@@ -1,0 +1,22 @@
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url(../fonts/Roboto-Regular.ttf);
+}
+@font-face {
+    font-family: "Roboto-Light";
+    src: url(../fonts/Roboto-Light.ttf);
+}
+@font-face {
+    font-family: "MuseoSansCyrl";
+    src: url(../fonts/MuseoSansCyrl.otf);
+}
+
+
+$font-family: 'Roboto-Regular', 'Arial', sans-serif;
+
+$font-color: $grey;
+
+$font-size-larger: 32px;
+$font-size-large: 22px;
+$font-size-normal: 14px;
+$font-size-small: 12px;

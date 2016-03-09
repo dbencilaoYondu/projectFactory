@@ -1,0 +1,23 @@
+.login-container{
+	&--signup{
+		min-height: 318px;
+	}
+
+	&__form{
+		&--signup{
+			top: -70px;
+			left: 15px;
+			right: 15px;
+		    padding: 30px 40px;
+		}
+
+		&__info{
+			display: block;
+			text-align: center;
+
+			.link{
+				color: $red;
+			}
+		}
+	}
+}

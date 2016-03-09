@@ -1,0 +1,33 @@
+.custom-upload{
+	width: 100%;
+	&-container{
+		.btn{
+		  	width: 65%;
+		    padding: 10px 15px;
+			border: 1px solid $greyLight!important;
+			min-height: 40px;
+			overflow: hidden;
+			text-align: left;
+			color: $grey;
+
+			&:hover,
+			&:focus{
+				background-color: transparent;
+				color: $grey!important;
+			}
+
+			img{
+				margin: 0;
+			}
+
+		}
+
+		.filename{
+			width: 184px;
+			overflow: hidden;
+			display: inline-block;
+			text-overflow: ellipsis;
+		}
+	}
+	
+}

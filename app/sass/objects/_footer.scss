@@ -1,0 +1,26 @@
+.factor-footer{
+	position: absolute;
+    width: 100%;
+    bottom: 0;
+	padding: 25px 0;
+	background-color: $black;
+	overflow: hidden;
+    color: white;
+
+	&__copyright{
+		float: left;
+	}
+
+	&__powered{
+		float: right;
+		p{
+			float: left;
+		}
+		img{
+			margin-left: 10px;
+		}
+	}
+	p{
+		margin: 0;
+	}
+}

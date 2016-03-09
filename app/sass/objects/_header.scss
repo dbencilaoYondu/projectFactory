@@ -1,0 +1,60 @@
+.user-icon{
+	position: relative;
+    top: -7px;
+    margin: 0 5px 0 10px;
+    display: inline-block;
+	width: 40px;
+	height: 35px;
+
+    img{
+    	max-width: 100%;
+    }
+}
+.navbar{
+	.navbar-collapse{
+		float: left;
+
+		 @media only screen and (max-width: 767px) {
+			float: none;
+	    }
+	}
+	.btn-group{
+	    margin-top: 2px;
+		
+        @media only screen and (max-width: 767px) {
+			position: absolute;
+			top: 15px;
+			right: 90px;
+	    }
+		.btn.action{
+			padding-right: 0;
+			background-color: transparent;
+			color: $red;
+			border: 0;
+			box-shadow: none;
+			&:hover,
+			&:focus,
+			&:active{
+				background-color: transparent!important;
+				color: $red!important;
+				box-shadow: none;
+				border: 0;
+			}
+		}
+		
+		.dropdown-menu{
+			padding: 0;
+			border-radius: 0;
+			> li{
+				> a{
+					padding: 10px 20px;
+
+					&:hover{
+						background-color: $red;
+						color: $white;
+					}
+				}
+			}
+		}
+	}
+}

@@ -14,7 +14,7 @@ var gulp 			= require('gulp'),
 var source = {
 	sass:'app/sass/**/*.scss',
 	img:'app/img/*',
-	script:'app/scripts/**/*.js',
+	script:'app/js/**/*',
 	mainjs:'app/scripts/main.js',
 	html:'app/**/*.html'
 };
@@ -48,6 +48,7 @@ var onError = function(err){
 
 gulp.task('sass',function(){
 	return gulp.src(source.sass)
+				.pipe(sourcemaps.init())
 		        .pipe(plumber({
 		        	errorHandler:onError
 		        }))
@@ -55,9 +56,8 @@ gulp.task('sass',function(){
 		        .pipe(autoprefixer('last 2 versions'))
 		        .pipe(gulp.dest(dest.css))
 		        .pipe(minifyCss())
-		        .pipe(sourcemaps.init())
 		        .pipe(rucksack())
-		        .pipe(sourcemaps.write())
+		        .pipe(sourcemaps.write('./maps'))
 		        .pipe(gulp.dest(dest.css));
 });
 
@@ -66,12 +66,13 @@ gulp.task('sass',function(){
 /*compile JS*/
 
 gulp.task('js',function(){
-	return gulp.src(source.mainjs)
-	.pipe(plumber({
-		        	errorHandler:onError
-		        }))
+	// return gulp.src(source.mainjs)
+	return gulp.src(source.script)
+	// .pipe(plumber({
+	// 	        	errorHandler:onError
+	// 	        }))
 
-	.pipe(concat('app.min.js'))
+	// .pipe(concat('app.min.js'))
 	.pipe(gulp.dest(dest.js));
 });
 

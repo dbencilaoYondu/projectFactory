@@ -1,17 +1,33 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-    	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+<html lang="en" ng-app="projectFactor">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title></title>
-		<link rel="stylesheet" href="css/app.css">
-		<script src="js/app.min.js"></script>
-	</head>
-	<body>
-		<header>
-			<div class="logo"><img src="img/header_logo-pf.png" alt="project factor logo"></div>
-		</header>
-		helllooooooooooo
-	</body>
+    <title>Project Factor</title>
+
+	<link rel="stylesheet" href="css/app.css">
+
+  </head>
+  <body ng-class="{'body-login' : state == '/' || state == 'signup'}">
+    <factor-header ng-if="state != '/' && state != 'signup'"></factor-header>
+	  <main class="main-container" ui-view></main>
+    <factor-footer ng-if="state != '/' && state != 'signup'"></factor-footer>
+
+
+    <script src="js/plugins/jquery.min.js"></script>
+    <script src="js/plugins/bootstrap.min.js"></script>
+    <script src="js/plugins/bootstrap-select.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/plugins/angular-ui-router.js"></script>
+    <script src="js/plugins/angular-sanitize.js"></script>
+    <script src="js/plugins/angular-ui-select.js"></script>
+    <script src="js/plugins/angular-ui-bootstrap.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/components/login/loginController.js"></script>
+    <script src="js/components/dashboard/dashboardController.js"></script>
+    <script src="js/components/branch_management/branchmanagementController.js"></script>
+    <script src="js/shared/directive.js"></script>
+  </body>
 </html>

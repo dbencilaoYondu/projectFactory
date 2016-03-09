@@ -1,0 +1,81 @@
+.login-logo{
+	h1{
+		margin: 0;
+		padding-top: 80px;
+		font-family: "MuseoSansCyrl";
+		font-weight: bold;
+		text-transform: uppercase;
+		text-align: center;
+
+		.white{
+			color: $white;
+		}
+		.red{
+			margin-left: -5px;
+			color: $red;
+		}
+	}
+}
+
+.login-container{
+    margin-top: 115px;
+	background-color: rgba(0, 0, 0, .5);
+
+	&__title{
+		margin-top: 0;
+		margin-bottom: 50px;
+		color: $red;
+	}
+	&__form{
+		position: absolute;
+		top: -55px;
+		padding: 50px 40px;
+		background-color: $white;
+	    box-shadow: 0 0 10px $black;
+		
+		.input-group{
+			.form-control{
+			    border-top: 0;
+			    border-left: 0;
+			    border-right: 0;
+			    outline: 0;
+			    box-shadow: none;
+
+			    &:focus ~ .input-group-addon{
+			    	border-color: darken($greyLighter,10%);
+			    }
+			}
+			&-addon{
+				background: $white;
+
+				img{
+					width: 20px;
+				}
+			}
+		}
+
+		.forgot-password{
+			margin-top: 45px;
+			display: block;
+			text-align: center;
+			text-decoration: underline;
+			color: $red;
+		}
+		
+	}
+	&__signup{
+		padding: 75px 23px;
+		color: #fff;
+		.login-container__title{
+			margin-bottom: 15px;
+			color: $white;
+		}
+		.btn{
+			margin-top: 40px;
+		}
+	}
+	.btn{
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+}

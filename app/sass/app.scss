@@ -1,5 +1,65 @@
-//main
-body{
-	font-size:responsive;
-	 color: rgba(#000, 0.8);
-}
+/*
+ * BOOTSTRAP
+ */
+@import "plugins/bootstrap";
+
+/* 
+ * TOOLS
+ */
+@import "tools/mixins";
+
+
+/* 
+ * SETTINGS
+ */
+@import "settings/colors";
+@import "settings/fonts";
+@import "settings/buttons";
+
+/* 
+ * GENERIC
+ */
+@import "generic/generic";
+
+
+/* 
+ * BASE
+ */
+
+@import "base/base";
+
+/* 
+ * OBJECTS
+ */
+@import "objects/header";
+@import "objects/footer";
+
+/* 
+ * COMPONENTS
+ */
+
+@import "components/login";
+@import "components/signup";
+@import "components/dashboard";
+@import "components/branchmanagement";
+
+@import "components/banner";
+@import "components/modal";
+@import "components/uploadfile";
+@import "components/checkbox";
+
+ /* 
+ * TRUMPS
+ */
+
+ @import "trumps/overrides";
+
+/* 
+ * PLUGINS
+ */
+@import "plugins/font-awesome/font-awesome";
+@import "plugins/variables";
+@import "plugins/angular-select";
+
+
+

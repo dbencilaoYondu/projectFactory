@@ -1,0 +1,25 @@
+html{
+	min-width: 1200px; // REMOVE THIS IF RESPONSIVE
+	height: 100%;
+}
+
+body{
+	position: relative;
+    padding-bottom: 145px;
+	min-height: 100%;
+	font-family: $font-family;
+	font-size: $font-size-normal;
+	color: $font-color;
+}
+
+h1{
+	font-size: $font-size-larger;
+}
+
+h2{
+	font-size: $font-size-large;
+}
+ul{
+	padding: 0;
+	list-style: none;
+}

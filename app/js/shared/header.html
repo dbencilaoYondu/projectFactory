@@ -1,0 +1,40 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#projectfactor-nav" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#/dashboard">
+        <img src="../img/header_logo-pf.png" alt="Project-Factor-Logo">
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="projectfactor-nav">
+      <ul class="nav navbar-nav">
+        <li ng-class="{'active' : state == 'dashboard'}"><a ui-sref="dashboard">Dashboard</a></li>
+        <li ng-class="{'active' : state == 'branchmanagement'}"><a ui-sref="branchmanagement">Branch Management</a></li>
+      </ul>
+ 
+    </div>
+      <div class="btn-group pull-right">
+        <button type="button" class="btn btn-default dropdown-toggle action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          My Account 
+          <span class="user-icon">
+            <img src="../img/header_icon-user.png" alt="Project-Factor-Icon-User">
+          </span>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </div>
+ 
+  </div>
+</nav>

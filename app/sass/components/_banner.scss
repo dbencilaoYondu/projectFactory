@@ -1,0 +1,34 @@
+.banner-container{
+	position: relative;
+	width: 100%;
+	height: 195px;
+
+	img{
+		width: 100%;
+	}
+}
+
+.info{
+	position: absolute;
+	top: 120px;
+	left: 60px;
+	&__profile-picture{
+		float: left;
+		width: 160px;
+		height: 160px;
+
+		img{
+			max-width: 100%;
+		}
+	}
+	&__details{
+		float: left;
+		margin-top: 75px;
+		margin-left: 20px;
+		color: $dark;
+
+		&__name *{
+			font-weight: bold;
+		}
+	}
+}

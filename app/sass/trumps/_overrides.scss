@@ -1,0 +1,177 @@
+.btn{
+	border: 1px solid $white;
+	&:hover,
+	&:focus,
+	&:active:focus{
+		color: $white;
+		outline: 0;
+	}
+}
+.form-control{
+	padding: 10px;
+	height: auto;
+	border: 1px solid $greyLighter;
+	border-radius: 0;
+	box-shadow: none;
+
+	&:focus{
+		border-color: darken($greyLighter,10%);
+		box-shadow: none;
+	}
+
+	&[disabled]{
+		background-color: $grey;
+	}
+}
+.form-group{
+	&__message{
+		display: none;
+	}
+	.input-group-addon{
+	    padding: 5px 10px;
+	    border: 0;
+	    border-bottom: 1px solid $greyLighter;
+		border-radius: 0;
+	}
+	.form-control-feedback{
+		display: none;
+	}
+
+}
+.form-inline{
+	.form-group{
+		label{
+			margin-right: 15px;
+			font-weight: normal;
+		}
+	}
+}
+.has-error{
+	.form-group{
+		&__message{
+			position: absolute;
+			top: 68px;
+			right: 5px;
+		    z-index: 10;
+			display: inline-block;
+			padding: 4px 10px;
+			background-color: $maroon;
+			color: $white;
+
+			&:before{
+				position: absolute;
+				top: -21px;
+				right: 13px;
+				font-family: FontAwesome;
+				font-size: 24px;
+				content: "\f0d8";
+				color: $maroon;
+				
+			}
+		}
+	}
+
+	.form-control{
+		border-color: $greyLight;
+
+		&:focus{
+			border-color: $darkLight;
+			box-shadow: none;
+		}
+
+		&-feedback{
+			display: inline-block;
+		}
+	}
+
+	label ~ .form-control-feedback{
+		top: 34px;
+		right: 8px;
+		font-size:  20px;
+		color: $maroon;
+	}
+
+
+}
+
+.navbar-default{
+    padding: 12px 0;
+    margin: 0;
+	background-color: $white;
+	border: 0;
+
+	.navbar-nav{
+	    margin-top: 8px;
+		> li{
+			> a{
+				color: $dark;
+				padding: 7px 0;
+				margin: 0 15px;
+			}
+			&.active{
+				> a{
+					background-color: transparent;
+					border-bottom: 3px solid $red;
+					color: $red;
+
+					&:hover,
+					&:focus{
+						background-color: transparent;
+						color: $red;
+					}
+				}
+
+			}
+		}
+	}
+}
+
+.container-fluid{
+	padding: 0 30px;
+
+	@media only screen and (max-width: 767px) {
+		padding: 0 15px;
+	}
+}
+
+.table{
+	> thead{
+		tr{
+			th{
+				padding: 15px 20px;
+				border: 1px solid $greyLighter;
+			    font-size: 16px;
+				color: $red;
+			}
+		}
+	}
+	> tbody{
+		tr{
+			td{
+				padding: 15px 20px;
+				border: 1px solid $greyLighter;
+			}
+		}
+	}
+
+	&-action{
+		> thead{
+			tr{
+				th{
+					&:first-child{
+						text-align: center;
+					}
+				}
+			}
+		}
+		> tbody{
+			tr{
+				td{
+					&:first-child{
+						text-align: center;
+					}
+				}
+			}
+		}
+	}
+}

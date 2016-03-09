@@ -1,0 +1,30 @@
+input[type="checkbox"]{
+	&.custom-checkbox{
+		display:none;
+
+	    &+label{
+	    	cursor: pointer;
+
+	    	& span{
+	    		display:inline-block;
+			    width:19px;
+			    height:19px;
+			    margin:-1px 0 0 0;
+			    vertical-align:middle;
+			    background:url(../../img/check.png) -19px 2px no-repeat;
+			    cursor:pointer;
+				border: 1px solid $greyLight;
+				border-radius: 4px;
+	    	}
+	    }
+
+	   
+	}
+	&:checked{
+    	&+label{
+	    	& span{
+	    		background:url(../../img/check.png) left 2px no-repeat;
+	    	}
+	    }
+    }
+}

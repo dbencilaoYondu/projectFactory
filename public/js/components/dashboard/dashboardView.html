@@ -1,0 +1,142 @@
+<div class="banner-container">
+	<img src="../img/banner.png" alt="Project-Factor-Banner">
+	<div class="info">
+		<div class="info__profile-picture">
+			<img src="../img/profile-picture.png" alt="Project-Factor-Profile-Picture">
+		</div>
+		<div class="info__details">
+			<div class="info__details__name">
+				<h3>Typo</h4>
+			</div>
+			<div class="info__details__type">
+				<h5>Products/Services</h5>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="dashboard">
+	<div class="container-fluid">
+		<button type="button" class="btn btn--primary pull-right btn-action" ng-click="open('lg')">
+			<img src="../img/pencil.png" alt="Project-Factor-Button-Icon">
+			Add Post
+		</button>
+
+		<div class="dashboard__post-container">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="form-inline">
+					  <div class="form-group pull-right">
+					    <label for="branch">Filter Branch</label>
+		               <ui-select ng-model="selected.value">
+						    <ui-select-match>
+						        <span ng-bind="$select.selected.location"></span>
+						    </ui-select-match>
+						    <ui-select-choices repeat="item in (places | filter: $select.search) track by item.id">
+						        <span ng-bind="item.location"></span>
+						    </ui-select-choices>
+						</ui-select>
+					  </div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<ul class="list-unstyled dashboard__post-list">
+						<li ng-repeat = "post in posts track by $index">
+							<div class="dashboard__post-list__details">
+								<div class="row">
+									<div class="col-xs-8">
+										<span class="profile">
+											<span class="profile__image">
+												<img ng-src="../img/{{post.profile.picture}}" alt="Project-Factor-Profile-Picture">
+											</span>
+											<p class="profile__name">{{post.profile.name}}</p>
+										</span>
+									</div>
+									<div class="col-xs-4">
+										<time class="time">{{post.displayDate}}</time>
+									</div>
+								</div>
+								<div class="description">
+									<p> {{post.content}}</p>
+								</div>
+								
+								<div class="branches">
+									<p>Branches: {{post.branch}}</p>
+								</div>
+							</div>
+							
+							<div class="dashboard__post-list__image">
+								<img ng-src="../img/{{post.postpicture}}" alt="Project-Factor-Post-Image">
+							</div>
+							
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/ng-template" id="addPostView.html">
+	<div class="modal-header">
+	    <h4 class="modal-title pull-left">Add Post</h4>
+	    <span class='glyphicon glyphicon-remove pull-right' ng-click="cancel()"></span>
+	</div>
+	<div class="modal-body">
+	    <div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="form-group">
+						<label for="post">Write your post</label>
+						<textarea name="post" id="post" cols="30" rows="10" class="form-control"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">
+					<div class="form-inline">
+					  <div class="form-group custom-upload">
+					    <label>Choose a photo</label>
+					    <span class="custom-upload-container">
+					    	<label for="photoupload" class="btn  btn--transparent">
+					    	<span ng-if="!fileName">Upload Image</span>
+					    	<span ng-if="fileName" class="filename">{{fileName}}</span>
+							<img src="../img/folder.png" alt="Project-Factor-Upload-Icon" class="pull-right"/>
+					    	</label>
+					    	<input type="file" class="form-control hidden" id="photoupload" file-upload file-name="fileName">
+					    </span>
+					  </div>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div class="form-inline">
+					  <div class="form-group select-checkbox">
+					    <label>Select branch/es</label>
+					    <div class="select-checkbox-group">
+							<button type="button" class="btn btn--transparent select-checkbox-group__btn" ng-click="showDrop()">
+								<span ng-if="poolArray.length == 0">Select Branch</span>
+								<span ng-if="poolArray.length == 1"> {{poolArray[0].location}}</span>
+								<span ng-if="poolArray.length > 1">{{poolArray.length}} branches selected</span>
+							</button>
+						   	<div class="select-checkbox-group__list-container" ng-show="isShow">
+						   		<ul class="list-unstyled">
+						   			<li ng-repeat="place in places">
+						   				<input type="checkbox" class="custom-checkbox" id="{{place.id}}" ng-class="{'checked' : poolArray.indexOf(place) != -1}"/>
+										<label for="{{place.id}}" ng-click="addtoPool(place)"><span></span>{{place.location}}</label>
+						   			</li>
+						   		</ul>
+						   	</div>
+					    </div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+	    <button class="btn btn--primary action" type="button" ng-click="ok()">Post</button>
+	</div>
+</script>
