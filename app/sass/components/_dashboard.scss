@@ -99,6 +99,20 @@
 				.branches{
 					position: absolute;
 				    bottom: 30px;
+				    width: calc(100% - 287px);
+				    label{
+				    	font-weight: normal;
+				    	margin-right: 5px;
+				    }
+				    &__list{
+						li{
+							float: left;
+							margin-right: 5px;
+							&:not(:last-child):after{
+								content:',';
+							}
+						}
+				    }
 				}
 			}
 			.dashboard__post-list__image{

@@ -3,6 +3,7 @@
 	&-container{
 		.btn{
 		  	width: 65%;
+		  	margin: 0!important;
 		    padding: 10px 15px;
 			border: 1px solid $greyLight!important;
 			min-height: 40px;
@@ -20,6 +21,10 @@
 				margin: 0;
 			}
 
+			&.storeimage{
+
+			}
+
 		}
 
 		.filename{
@@ -27,6 +32,17 @@
 			overflow: hidden;
 			display: inline-block;
 			text-overflow: ellipsis;
+		}
+	}
+
+	&.storeimage{
+		> label{
+			margin-right: 7px!important;
+		}
+		&-container{
+			.btn{
+			    width: 63%;
+			}
 		}
 	}
 	

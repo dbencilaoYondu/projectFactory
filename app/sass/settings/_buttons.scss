@@ -1,8 +1,9 @@
 .btn{
 	padding: 10px 30px;
 	border-radius: 0;
-
-	> img{
+	
+	> img,
+	.fa{
 		margin-top: -4px;
 		margin-right: 5px;
 	}
@@ -15,7 +16,9 @@
 		background-color: $red;
 		color: $white;
 		
-		&:hover{
+		&:hover,
+		&:focus,
+		&:active{
 			background-color: lighten($red,10%);
 			color: $white;
 
@@ -23,35 +26,29 @@
 		}
 	}
 
-	&--action{
-		background-color: $blue;
-		color: $white;
+	&--action-negative{
+		background-color: $greyLighter;
+		color: $grey;
 		
-		&:hover{
-			background-color: $blueDark;
-			color: $white;
+		&:hover,
+		&:focus,
+		&:active{
+			background-color: lighten($greyLighter,5%);
+			color: $grey!important;
 
 			@include transition(.3s);
 		}
 	}
 
-	&--action--negative{
-		background-color: $skyblue;
-		color: $white;
-		
-		&:hover{
-			background-color: $skyblueDark;
-			color: $white;
-
-			@include transition(.3s);
-		}
-	}
+	
 
 	&--transparent{
 		background-color: transparent;
 		color: $white;
 		
-		&:hover{
+		&:hover,
+		&:focus,
+		&:active{
 			background-color: lighten($black,20%);
 			color: $white;
 

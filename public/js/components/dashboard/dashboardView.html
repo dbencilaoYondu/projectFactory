@@ -17,7 +17,7 @@
 
 <div class="dashboard">
 	<div class="container-fluid">
-		<button type="button" class="btn btn--primary pull-right btn-action" ng-click="open('lg')">
+		<button type="button" class="btn btn--primary pull-right btn-action" ng-click="open('addPostView.html','AddPostController','lg')">
 			<img src="./img/pencil.png" alt="Project-Factor-Button-Icon">
 			Add Post
 		</button>
@@ -30,10 +30,10 @@
 					    <label for="branch">Filter Branch</label>
 		               <ui-select ng-model="selected.value">
 						    <ui-select-match>
-						        <span ng-bind="$select.selected.location"></span>
+						        <span ng-bind="$select.selected.name"></span>
 						    </ui-select-match>
 						    <ui-select-choices repeat="item in (places | filter: $select.search) track by item.id">
-						        <span ng-bind="item.location"></span>
+						        <span ng-bind="item.name"></span>
 						    </ui-select-choices>
 						</ui-select>
 					  </div>
@@ -63,7 +63,12 @@
 								</div>
 								
 								<div class="branches">
-									<p>Branches: {{post.branch}}</p>
+									<label class="pull-left">Branches:</label>
+									<ul class="list-unstyled branches__list">
+										<li ng-repeat="branch in post.branch">
+											{{branch}}
+										</li>
+									</ul>
 								</div>
 							</div>
 							
@@ -91,7 +96,7 @@
 				<div class="col-xs-12">
 					<div class="form-group">
 						<label for="post">Write your post</label>
-						<textarea name="post" id="post" cols="30" rows="10" class="form-control"></textarea>
+						<textarea name="post" id="post" cols="30" rows="10" class="form-control" ng-model="newPost.content"></textarea>
 					</div>
 				</div>
 			</div>
@@ -118,14 +123,14 @@
 					    <div class="select-checkbox-group">
 							<button type="button" class="btn btn--transparent select-checkbox-group__btn" ng-click="showDrop()">
 								<span ng-if="poolArray.length == 0">Select Branch</span>
-								<span ng-if="poolArray.length == 1"> {{poolArray[0].location}}</span>
+								<span ng-if="poolArray.length == 1"> {{poolArray[0].name}}</span>
 								<span ng-if="poolArray.length > 1">{{poolArray.length}} branches selected</span>
 							</button>
 						   	<div class="select-checkbox-group__list-container" ng-show="isShow">
 						   		<ul class="list-unstyled">
 						   			<li ng-repeat="place in places">
 						   				<input type="checkbox" class="custom-checkbox" id="{{place.id}}" ng-class="{'checked' : poolArray.indexOf(place) != -1}"/>
-										<label for="{{place.id}}" ng-click="addtoPool(place)"><span></span>{{place.location}}</label>
+										<label for="{{place.id}}" ng-click="addtoPool(place)"><span></span>{{place.name}}</label>
 						   			</li>
 						   		</ul>
 						   	</div>

@@ -20,11 +20,8 @@ app.directive("fileUpload",function(){
         fileName: '='
       },
       link: function(scope, element, attrs) {
-      	console.log(scope.fileName);
         element.on('change', function(evt) {
           var files = evt.target.files;
-          console.log(files[0].name);
-
           scope.fileName = files[0].name;
           scope.$apply();
         });

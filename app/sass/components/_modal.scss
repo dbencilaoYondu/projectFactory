@@ -1,5 +1,22 @@
 .modal{
 	&-dialog{
+
+		&.modal-sm{
+			width: 590px;
+
+			.modal-body{
+			    padding-top: 20px!important;
+				.container-fluid--small{
+					width: 358px;
+					margin: 0 auto;
+					padding: 0;
+				}
+				
+			}
+			.modal-footer{
+			    padding-bottom: 40px!important;
+			}
+		}
 		.modal-content{
 			border-radius: 0;
 
@@ -12,6 +29,10 @@
 					top: 5px;
 					right: 15px;
 					cursor: pointer;
+				}
+
+				&--transparent{
+					background-color: transparent;
 				}
 			}
 

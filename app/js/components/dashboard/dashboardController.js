@@ -4,41 +4,42 @@ app.controller("DashboardViewController",["$scope","$uibModal",function($scope,$
 
 	$scope.places = [
 		{	
-			"id": "0",
-			"location": "All"
-		},
-		{	
 			"id": "1",
-			"location": "Typo, Bonifacio High Street",
+			"name": "Typo, Bonifacio High Street",
 			"address": "B6 Bonifacio High Street, 11th Avenue, Bonifacio Global City, Taguig City",
 			"storehours": {
-				"open": "0900",
-				"close": "2300"
+				"open": "09:00",
+				"close": "23:00"
 			},
-			"businesstype": "Products/Services"
+			"businesstype": "Products/Services",
+			"filename": "",
+			"contact" : "91112345"
 		},
 		{	
 			"id": "2",
-			"location": "Typo, Greenbelt 5",
+			"name": "Typo, Greenbelt 5",
 			"address": "2nd Floor, Greenbelt 5, Makati City",
 			"storehours": {
-				"open": "1000",
-				"close": "2100"
+				"open": "10:00",
+				"close": "21:00"
 			},
-			"businesstype": "Products/Services"
+			"businesstype": "Products/Services",
+			"filename": "",
+			"contact" : "91112345"
 		},
 		{
 			"id": "3",
-			"location": "Typo, Trinoma",
+			"name": "Typo, Trinoma",
 			"address": "Ground Floor, Trinoma, Quezon City",
 			"storehours": {
-				"open": "1000",
-				"close": "2100"
+				"open": "10:00",
+				"close": "21:00"
 			},
-			"businesstype": "Products/Services"
+			"businesstype": "Products/Services",
+			"filename": "",
+			"contact" : "91112345"
 		}
 	];
-
 
 	$scope.posts = [
 		{
@@ -48,7 +49,7 @@ app.controller("DashboardViewController",["$scope","$uibModal",function($scope,$
 			},
 			"date" : "2/29/2016",
 			"content": "Lorem ipsum keme keme keme 48 years pamenthol shonget wasok ganda lang kasi katagalugan ang ang warla na ang kasi intonses dites shonget jowa nang antibiotic wasok tetetet bella at at nang katol pinkalou sudems na ang wasok cheapangga ano tungril dites thunder majonders at nang pamenthol fayatollah kumenis pamenthol buya buya nang jowabella at nang na ang kasi ano shonget oblation at at jowa na ang kasi borta jowabella matod na ang doonek",
-			"branch" : "Bonifacio High Street, Greenbelt 5",
+			"branch" : ["Bonifacio High Street","Greenbelt 5"],
 			"postpicture" : "posting-image.png"
 		},
 		{
@@ -58,7 +59,7 @@ app.controller("DashboardViewController",["$scope","$uibModal",function($scope,$
 			},
 			"date" : "2/26/2016",
 			"content": "Lorem ipsum keme keme keme 48 years pamenthol shonget wasok ganda lang kasi katagalugan ang ang warla na ang kasi intonses dites shonget jowa nang antibiotic wasok tetetet bella at at nang katol pinkalou sudems na ang wasok cheapangga ano tungril dites thunder majonders at nang pamenthol fayatollah kumenis pamenthol buya buya nang jowabella at nang na ang kasi ano shonget oblation at at jowa na ang kasi borta jowabella matod na ang doonek",
-			"branch" : "Bonifacio High Street",
+			"branch" : ["Bonifacio High Street"],
 			"postpicture" : "posting-image2.png"
 		},
 		{
@@ -68,7 +69,7 @@ app.controller("DashboardViewController",["$scope","$uibModal",function($scope,$
 			},
 			"date" : "2/20/2016",
 			"content": "Lorem ipsum keme keme keme 48 years pamenthol shonget wasok ganda lang kasi katagalugan ang ang warla na ang kasi intonses dites shonget jowa nang antibiotic wasok tetetet bella at at nang katol pinkalou sudems na ang wasok cheapangga ano tungril dites thunder majonders at nang pamenthol fayatollah kumenis pamenthol buya buya nang jowabella at nang na ang kasi ano shonget oblation at at jowa na ang kasi borta jowabella matod na ang doonek",
-			"branch" : "All",
+			"branch" : ["All"],
 			"postpicture" : "posting-image3.png"
 		}
 	];
@@ -92,38 +93,67 @@ app.controller("DashboardViewController",["$scope","$uibModal",function($scope,$
 	 *	MODAL
 	 */
 	$scope.animationsEnabled = true;
+	$scope.placesCopy = angular.copy($scope.places);
 
-	$scope.open = function (size) {
-
+	$scope.open = function (template,controller,size) {
+		console.log(controller);
 	    var modalInstance = $uibModal.open({
 	      animation: $scope.animationsEnabled,
-	      templateUrl: 'addPostView.html',
-	      controller: 'AddPostController',
+	      templateUrl: template,
+	      controller: controller,
 	      size: size,
 	      resolve: {
-	        places: function () {
-	          return $scope.places;
+	        placesCopy: function () {
+	          return $scope.placesCopy;
 	        }
 	      }
 	    });
 
-	    modalInstance.result.then(function (selectedItem) {
-	      $scope.places = selectedItem;
-	      console.log(selectedItem);
+	    modalInstance.result.then(function (returndata) {
+	      if(returndata.type=="addpost"){
+
+	      	var d = new Date();
+			var day = d.getDay();
+			var month = d.getMonth();
+			var date = d.getDate();
+			var year = d.getFullYear();
+
+			returndata.displayDate = dayArray[day] + ", " + monthArray[month] + ". " + date + ", "+year;
+
+	      	$scope.posts.push(returndata);
+	      	console.log($scope.posts);
+	      }
 	    });
 	};
 
 }]);
 
-app.controller('AddPostController', ["$scope", "$uibModalInstance","$rootScope","places",function ($scope, $uibModalInstance,$rootScope, places) {
+app.controller('AddPostController', ["$scope", "$uibModalInstance","$rootScope","placesCopy",function ($scope, $uibModalInstance,$rootScope, placesCopy) {
 
-	$scope.places = places;
+	$scope.places = placesCopy;
+	$scope.newPost = {
+		"profile" : {
+			"picture" : "profile-picture.png",
+			"name" : "Typo"
+		},
+		"branch" : []
+	};
 
 	$scope.ok = function () {
-		$uibModalInstance.close($scope.places);
+		angular.forEach($scope.poolArray,function(pool,index){
+			if(pool.isSelected == true){
+				$scope.newPost.branch.push(pool.name);
+			}
+		});
+		$scope.newPost.postpicture = $scope.fileName;
+		$scope.return = $scope.newPost;
+		$scope.return.type="addpost";
+
+		$uibModalInstance.close($scope.return);
 	};
 
 	$scope.cancel = function () {
+		$scope.poolArray = [];
 		$uibModalInstance.dismiss('cancel');
 	};
 
@@ -165,6 +195,7 @@ app.controller('AddPostController', ["$scope", "$uibModalInstance","$rootScope",
 					place2.isSelected = false;
 			});
 		}
+		
 	};
 
 	function containsObject(obj, list) {

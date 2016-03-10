@@ -7,35 +7,56 @@ app.controller("BranchManagementViewController",["$scope","$uibModal",function($
 	$scope.places = [
 		{	
 			"id": "1",
-			"location": "Typo, Bonifacio High Street",
+			"name": "Typo, Bonifacio High Street",
 			"address": "B6 Bonifacio High Street, 11th Avenue, Bonifacio Global City, Taguig City",
 			"storehours": {
 				"open": "09:00",
 				"close": "23:00"
 			},
-			"businesstype": "Products/Services"
+			"businesstype": "Products/Services",
+			"filename": "",
+			"contact" : "91112345"
 		},
 		{	
 			"id": "2",
-			"location": "Typo, Greenbelt 5",
+			"name": "Typo, Greenbelt 5",
 			"address": "2nd Floor, Greenbelt 5, Makati City",
 			"storehours": {
 				"open": "10:00",
 				"close": "21:00"
 			},
-			"businesstype": "Products/Services"
+			"businesstype": "Products/Services",
+			"filename": "",
+			"contact" : "91112345"
 		},
 		{
 			"id": "3",
-			"location": "Typo, Trinoma",
+			"name": "Typo, Trinoma",
 			"address": "Ground Floor, Trinoma, Quezon City",
 			"storehours": {
 				"open": "10:00",
 				"close": "21:00"
 			},
-			"businesstype": "Products/Services"
+			"businesstype": "Products/Services",
+			"filename": "",
+			"contact" : "91112345"
 		}
 	];
+
+	$scope.check_all = false;
+	$scope.checkAll = function(all){
+		if(all == true){
+			angular.forEach($scope.places,function(place,index){
+				place.isSelected = true;
+			});
+			//$scope.check_all = false;
+		}else{
+			angular.forEach($scope.places,function(place,index){
+				place.isSelected = false;
+			});
+			//$scope.check_all = true;
+		}
+	};
 
 	function formatDate(date) {
 		date = "February 04, 2011"+" "+date+":00";
@@ -74,102 +95,103 @@ app.controller("BranchManagementViewController",["$scope","$uibModal",function($
 		var close = formatDate(place.storehours.close);
 		var x =  open+" - "+close;
 		place.storehours.displayTime = x;
+
+		if(!place.isSelected){
+			place.isSelected = false;
+		}
 	});
 
 	$scope.selected = { value: $scope.places[0] };
+
+
+
+	/*
+	 *	DELETE FUNCTION
+	 */
+
+	$scope.toDeletePool = [];
+	$scope.addToDelete = function(place){
+		$scope.toDeletePool.push(place);
+	};
 
 	/*
 	 *	MODAL
 	 */
 	$scope.animationsEnabled = true;
+	$scope.placesCopy = angular.copy($scope.places);
 
-	$scope.open = function (size) {
+	$scope.open = function (template,controller,size) {
 
 	    var modalInstance = $uibModal.open({
 	      animation: $scope.animationsEnabled,
-	      templateUrl: 'addPostView.html',
-	      controller: 'AddPostController',
+	      templateUrl: template,
+	      controller: controller,
 	      size: size,
 	      resolve: {
-	        places: function () {
-	          return $scope.places;
+	        placesCopy: function () {
+	          return $scope.placesCopy;
+	        },
+	        toDeletePool: function () {
+	          return $scope.toDeletePool;
 	        }
 	      }
 	    });
 
-	    modalInstance.result.then(function (selectedItem) {
-	      $scope.places = selectedItem;
-	      console.log(selectedItem);
+	    modalInstance.result.then(function (returndata) {
+	      if(returndata.type==="addbranch" && returndata.storehours){
+	      		var open = formatDate(returndata.storehours.open);
+				var close = formatDate(returndata.storehours.close);
+				var x =  open+" - "+close;
+				returndata.storehours.displayTime = x;
+	      		$scope.places.push(returndata);
+	      }else if(returndata.type==="deletebranch"){
+	      	$scope.places = returndata;
+	      	$scope.toDeletePool = [];
+	      }
 	    });
 	};
 
+
+
 }]);
 
-app.controller('AddPostController', ["$scope", "$uibModalInstance","$rootScope","places",function ($scope, $uibModalInstance,$rootScope, places) {
 
-	$scope.places = places;
-
+app.controller('AddBranchController', ["$scope", "$uibModalInstance","$rootScope",function ($scope, $uibModalInstance,$rootScope) {
+	$scope.newBranch = {};
 	$scope.ok = function () {
-		$uibModalInstance.close($scope.places);
+		$scope.newBranch.filename = $scope.filename;
+		$scope.return = $scope.newBranch;
+		$scope.return.type = "addbranch";
+		$uibModalInstance.close($scope.return);
 	};
 
 	$scope.cancel = function () {
 		$uibModalInstance.dismiss('cancel');
 	};
 
-	// LIST OF BRANCHES SELECTED
-	$scope.poolArray = [];
-	$scope.isShow = false;
-	$scope.showDrop = function(){
-		if($scope.isShow){
-			$scope.isShow = false;
-		}else{
-			$scope.isShow = true;
-		}
-	};
-	
-	angular.forEach($scope.places,function(place,index){
-		if(place.isSelected){
-			if(place.isSelected === true)
-				$scope.poolArray.push(place);
-		}else{
-			place.isSelected = false;
-		}
-		
-	});
 
-	$scope.addtoPool = function(place){
-		if(!containsObject(place,$scope.poolArray)){
-			$scope.poolArray.push(place);
+}]);
 
-			angular.forEach($scope.places,function(place2,index){
-				if(place2.id == place.id)
-					place2.isSelected = true;
-			});
-		}else{
-			var index = $scope.poolArray.indexOf(place);
-  			$scope.poolArray.splice(index, 1);  
+app.controller('DeleteBranchController', ["$scope", "$uibModalInstance","$rootScope","places","toDeletePool",function ($scope, $uibModalInstance,$rootScope,places,toDeletePool) {
+	$scope.places = places;
+	$scope.toDeletePool = toDeletePool;
 
-  			angular.forEach($scope.places,function(place2,index){
-				if(place2.id == place.id)
-					place2.isSelected = false;
-			});
-		}
+	$scope.ok = function () {
+
+		angular.forEach($scope.toDeletePool,function(place,index){
+			var index = $scope.places.indexOf(place);
+	  		$scope.places.splice(index, 1);  
+		});
+		$scope.return = $scope.places;
+		$scope.return.type = "addbranch";
+
+		$uibModalInstance.close($scope.return);
 	};
 
-	function containsObject(obj, list) {
-	    var i;
-	    for (i = 0; i < list.length; i++) {
-	        if (list[i] === obj) {
-	            return true;
-	        }
-	    }
-	    return false;
-	}
-
-
-	//UPLOAD IMAGE
-	$scope.fileName='';
+	$scope.cancel = function () {
+		$uibModalInstance.dismiss('cancel');
+	};
 
 
 }]);
+
