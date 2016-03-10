@@ -1,8 +1,8 @@
 <div class="banner-container">
-	<img src="../img/banner.png" alt="Project-Factor-Banner">
+	<img src="./img/banner.png" alt="Project-Factor-Banner">
 	<div class="info">
 		<div class="info__profile-picture">
-			<img src="../img/profile-picture.png" alt="Project-Factor-Profile-Picture">
+			<img src="./img/profile-picture.png" alt="Project-Factor-Profile-Picture">
 		</div>
 		<div class="info__details">
 			<div class="info__details__name">
@@ -18,7 +18,7 @@
 <div class="dashboard">
 	<div class="container-fluid">
 		<button type="button" class="btn btn--primary pull-right btn-action" ng-click="open('lg')">
-			<img src="../img/pencil.png" alt="Project-Factor-Button-Icon">
+			<img src="./img/pencil.png" alt="Project-Factor-Button-Icon">
 			Add Post
 		</button>
 
@@ -49,7 +49,7 @@
 									<div class="col-xs-8">
 										<span class="profile">
 											<span class="profile__image">
-												<img ng-src="../img/{{post.profile.picture}}" alt="Project-Factor-Profile-Picture">
+												<img ng-src="./img/{{post.profile.picture}}" alt="Project-Factor-Profile-Picture">
 											</span>
 											<p class="profile__name">{{post.profile.name}}</p>
 										</span>
@@ -68,7 +68,7 @@
 							</div>
 							
 							<div class="dashboard__post-list__image">
-								<img ng-src="../img/{{post.postpicture}}" alt="Project-Factor-Post-Image">
+								<img ng-src="./img/{{post.postpicture}}" alt="Project-Factor-Post-Image">
 							</div>
 							
 						</li>
@@ -104,7 +104,7 @@
 					    	<label for="photoupload" class="btn  btn--transparent">
 					    	<span ng-if="!fileName">Upload Image</span>
 					    	<span ng-if="fileName" class="filename">{{fileName}}</span>
-							<img src="../img/folder.png" alt="Project-Factor-Upload-Icon" class="pull-right"/>
+							<img src="./img/folder.png" alt="Project-Factor-Upload-Icon" class="pull-right"/>
 					    	</label>
 					    	<input type="file" class="form-control hidden" id="photoupload" file-upload file-name="fileName">
 					    </span>
