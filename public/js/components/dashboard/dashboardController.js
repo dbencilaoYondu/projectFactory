@@ -74,6 +74,8 @@ app.controller("DashboardViewController",["$scope","$uibModal",function($scope,$
 		}
 	];
 
+
+
 	var dayArray = new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
 	var monthArray = new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
 
@@ -87,16 +89,22 @@ app.controller("DashboardViewController",["$scope","$uibModal",function($scope,$
 		post.displayDate = dayArray[day] + ", " + monthArray[month] + ". " + date + ", "+year;
 
 	});
-	$scope.selected = { value: $scope.places[0] };
+	
 
 	/*
 	 *	MODAL
 	 */
 	$scope.animationsEnabled = true;
 	$scope.placesCopy = angular.copy($scope.places);
+	var add = {	
+			"id": "0",
+			"name": "All"
+	};
+
+	$scope.placesCopy.unshift(add);
+	$scope.selected = { value: $scope.placesCopy[0] };
 
 	$scope.open = function (template,controller,size) {
-		console.log(controller);
 	    var modalInstance = $uibModal.open({
 	      animation: $scope.animationsEnabled,
 	      templateUrl: template,
@@ -131,6 +139,13 @@ app.controller("DashboardViewController",["$scope","$uibModal",function($scope,$
 app.controller('AddPostController', ["$scope", "$uibModalInstance","$rootScope","placesCopy",function ($scope, $uibModalInstance,$rootScope, placesCopy) {
 
 	$scope.places = placesCopy;
+	// var add = {	
+	// 		"id": "0",
+	// 		"name": "All"
+	// };
+
+	// $scope.places.unshift(add);
+
 	$scope.newPost = {
 		"profile" : {
 			"picture" : "profile-picture.png",
